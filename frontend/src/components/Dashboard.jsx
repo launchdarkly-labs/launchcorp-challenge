@@ -7,7 +7,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <button className="dashboard-click-btn" onClick={() => navigate('/castle')}>
-        Click Me
+        ENTER AND FIND OUT
       </button>
     </div>
   )

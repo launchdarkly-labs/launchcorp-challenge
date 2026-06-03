@@ -8,15 +8,13 @@ const API = 'http://localhost:8000'
 export default function Auth() {
   const navigate = useNavigate()
   const ldClient = useLDClient()
-  const [mode, setMode] = useState(null)       // null | 'register' | 'login'
+  const [mode, setMode] = useState('login')
   const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
   const [message, setMessage] = useState(null) // { text, ok }
   const [loading, setLoading] = useState(false)
 
   const reset = (nextMode) => {
     setName('')
-    setPassword('')
     setMessage(null)
     setMode(nextMode)
   }
@@ -26,15 +24,14 @@ export default function Auth() {
     setLoading(true)
     setMessage(null)
 
-    const endpoint = mode === 'register' ? '/register' : '/login'
     try {
-      const res = await fetch(`${API}${endpoint}`, {
+      const res = await fetch(`${API}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, password }),
+        body: JSON.stringify({ name }),
       })
       const data = await res.json()
-      if (res.ok && mode === 'login') {
+      if (res.ok) {
         await ldClient.identify({
           kind: 'user',
           key: crypto.randomUUID(),
@@ -43,12 +40,7 @@ export default function Auth() {
         navigate('/dashboard')
         return
       }
-      if (res.ok && mode === 'register') {
-        reset('login')
-        setMessage({ text: 'Account created! Please sign in.', ok: true })
-        return
-      }
-      setMessage({ text: res.ok ? data.message : data.detail, ok: res.ok })
+      setMessage({ text: data.detail, ok: false })
     } catch {
       setMessage({ text: 'Could not reach the server.', ok: false })
     } finally {
@@ -56,28 +48,10 @@ export default function Auth() {
     }
   }
 
-  if (!mode) {
-    return (
-      <div className="auth-btn-row">
-        <button className="auth-primary-btn" onClick={() => reset('register')}>
-          Register
-        </button>
-        <button className="auth-secondary-btn" onClick={() => reset('login')}>
-          Sign In
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div>
       <div className="auth-mode-header">
-        <h2 className="auth-mode-title">
-          {mode === 'register' ? 'Create Account' : 'Welcome Back'}
-        </h2>
-        <button className="auth-switch-link" onClick={() => reset(mode === 'register' ? 'login' : 'register')}>
-          {mode === 'register' ? 'Already have an account? Sign in' : 'Need an account? Register'}
-        </button>
+        <h2 className="auth-mode-title">Welcome Back</h2>
       </div>
 
       <form onSubmit={submit} className="auth-form">
@@ -92,28 +66,14 @@ export default function Auth() {
           autoFocus
         />
 
-        <label className="auth-label">Password</label>
-        <input
-          className="auth-input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="••••••••"
-          required
-        />
-
-        {message && (
+{message && (
           <p className={`auth-message ${message.ok ? 'success' : 'error'}`}>
             {message.text}
           </p>
         )}
 
         <button className="auth-submit-btn" type="submit" disabled={loading}>
-          {loading ? 'Please wait…' : mode === 'register' ? 'Create Account' : 'Sign In'}
-        </button>
-
-        <button className="auth-back-link" type="button" onClick={() => reset(null)}>
-          ← Back
+          {loading ? 'Please wait…' : 'Sign In'}
         </button>
       </form>
     </div>

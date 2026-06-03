@@ -1,6 +1,8 @@
 .dashboard-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0f0f1a 0%, #1a1a3e 100%);
@@ -26,4 +28,20 @@
 
 .dashboard-click-btn:active {
   transform: scale(0.97);
+}
+
+.dashboard-signout-btn {
+  padding: 0.6rem 1.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.dashboard-signout-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
 }

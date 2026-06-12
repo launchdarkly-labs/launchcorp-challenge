@@ -6,7 +6,8 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #0f0f1a;
+  background: url('/Background 1.svg') center center / cover no-repeat fixed;
+  background-color: #0f0f1a;
   color: #e2e8f0;
   min-height: 100vh;
 }

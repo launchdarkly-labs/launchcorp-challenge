@@ -8,7 +8,7 @@
   padding: 0.75rem;
   border-radius: 8px;
   border: none;
-  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  background: #253534;
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
@@ -24,9 +24,9 @@
   flex: 1;
   padding: 0.75rem;
   border-radius: 8px;
-  border: 1px solid #3b82f6;
+  border: 1px solid #253534;
   background: transparent;
-  color: #60a5fa;
+  color: #FFB636;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -44,14 +44,14 @@
 .auth-mode-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #FFB636;
   margin-bottom: 0.4rem;
 }
 
 .auth-switch-link {
   background: none;
   border: none;
-  color: #7c3aed;
+  color: #FFD07A;
   font-size: 0.85rem;
   cursor: pointer;
   padding: 0;
@@ -66,16 +66,16 @@
 
 .auth-label {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: #FFD07A;
   font-weight: 500;
 }
 
 .auth-input {
   padding: 0.65rem 0.85rem;
   border-radius: 8px;
-  border: 1px solid #2d2d4e;
-  background: #0f0f1a;
-  color: #e2e8f0;
+  border: 1px solid #4a686b;
+  background: #4a686b;
+  color: #FFB636;
   font-size: 0.95rem;
   outline: none;
   margin-bottom: 0.4rem;
@@ -83,7 +83,7 @@
 }
 
 .auth-input:focus {
-  border-color: #7c3aed;
+  border-color: #FFB636;
 }
 
 .auth-message {
@@ -104,8 +104,8 @@
   padding: 0.75rem;
   border-radius: 8px;
   border: none;
-  background: linear-gradient(90deg, #7c3aed, #3b82f6);
-  color: #fff;
+  background: #FFB636;
+  color: #4a686b;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -124,7 +124,7 @@
 .auth-back-link {
   background: none;
   border: none;
-  color: #64748b;
+  color: #FFD07A;
   font-size: 0.85rem;
   cursor: pointer;
   text-align: left;
@@ -132,5 +132,5 @@
 }
 
 .auth-back-link:hover {
-  color: #94a3b8;
+  color: #FFB636;
 }

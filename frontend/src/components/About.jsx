@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import BackButton from './BackButton'
 import '../styles/About.css'
 
 export default function About() {
@@ -6,6 +7,7 @@ export default function About() {
 
   return (
     <div className="about-page">
+      <BackButton />
       <div className="about-card">
         <div className="about-badge">About Us</div>
         <h1 className="about-title">Launchcorp</h1>

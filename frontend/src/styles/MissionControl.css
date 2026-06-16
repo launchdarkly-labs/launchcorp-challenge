@@ -1,0 +1,93 @@
+.mission-control-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+}
+
+.mission-control-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFB636;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 18px rgba(255, 182, 54, 0.55);
+  animation: missionTitleGlow 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes missionTitleGlow {
+  0%, 100% { text-shadow: 0 0 12px rgba(255, 182, 54, 0.4); }
+  50%      { text-shadow: 0 0 28px rgba(255, 182, 54, 0.95); }
+}
+
+.mission-control-illustration {
+  width: 100%;
+  max-width: 780px;
+  max-height: 70vh;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.mission-control-home-btn {
+  padding: 1rem 2.4rem;
+  border-radius: 10px;
+  border: 2px solid #FFB636;
+  background: rgba(37, 53, 52, 0.85);
+  color: #FFB636;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(255, 182, 54, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  z-index: 2;
+}
+
+.mission-control-home-btn:hover {
+  transform: scale(1.05);
+  background: rgba(37, 53, 52, 1);
+  box-shadow: 0 0 36px rgba(255, 182, 54, 0.75);
+}
+
+.mission-control-home-btn:active {
+  transform: scale(0.97);
+}
+
+.spaceship {
+  position: fixed;
+  left: -3rem;
+  pointer-events: none;
+  z-index: 5;
+  animation: flyShip linear infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 182, 54, 0.6));
+}
+
+@keyframes flyShip {
+  0%   { left: -3rem;             transform: translateY(0)    rotate(35deg); }
+  25%  {                          transform: translateY(-20px) rotate(40deg); }
+  50%  {                          transform: translateY(10px)  rotate(30deg); }
+  75%  {                          transform: translateY(-15px) rotate(42deg); }
+  100% { left: calc(100vw + 3rem); transform: translateY(0)   rotate(35deg); }
+}
+
+.celebration-sparkle {
+  position: fixed;
+  color: #FFD700;
+  pointer-events: none;
+  z-index: 4;
+  animation: celebrationSparkle ease-in-out infinite;
+}
+
+@keyframes celebrationSparkle {
+  0%   { opacity: 0;   transform: scale(0.4) rotate(0deg);   }
+  40%  { opacity: 1;   transform: scale(1.4) rotate(90deg);  }
+  70%  { opacity: 0.8; transform: scale(1)   rotate(180deg); }
+  100% { opacity: 0;   transform: scale(0.4) rotate(270deg); }
+}

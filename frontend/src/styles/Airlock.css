@@ -1,0 +1,96 @@
+.airlock-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+}
+
+.airlock-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FFB636;
+  text-align: center;
+  margin: 0;
+}
+
+.airlock-denied-title {
+  color: #ff5a5a;
+}
+
+.airlock-illustration {
+  width: 100%;
+  max-width: 640px;
+  max-height: 65vh;
+  object-fit: contain;
+}
+
+.airlock-proceed-btn {
+  padding: 1rem 2.4rem;
+  border-radius: 10px;
+  border: 2px solid #FFB636;
+  background: rgba(37, 53, 52, 0.85);
+  color: #FFB636;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(255, 182, 54, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.airlock-proceed-btn:hover {
+  transform: scale(1.05);
+  background: rgba(37, 53, 52, 1);
+  box-shadow: 0 0 36px rgba(255, 182, 54, 0.75);
+}
+
+.airlock-proceed-btn:active {
+  transform: scale(0.97);
+}
+
+.airlock-signout-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.airlock-signout-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.airlock-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 1.5rem 3rem;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.22);
+  border: 3px solid #ff1a1a;
+  color: #ff1a1a;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 30px rgba(255, 26, 26, 0.75);
+  animation: airlockErrorPulse 0.9s ease-in-out infinite;
+}
+
+@keyframes airlockErrorPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 26, 26, 0.5); transform: translate(-50%, -50%) scale(1); }
+  50%      { box-shadow: 0 0 48px rgba(255, 26, 26, 1);   transform: translate(-50%, -50%) scale(1.04); }
+}

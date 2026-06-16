@@ -1,0 +1,26 @@
+.go-back-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 182, 54, 0.4);
+  background: rgba(37, 53, 52, 0.85);
+  color: #FFB636;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.go-back-btn:hover {
+  transform: translateX(-2px);
+  background: rgba(37, 53, 52, 1);
+  border-color: #FFB636;
+}
+
+.go-back-btn:active {
+  transform: translateX(-2px) scale(0.96);
+}

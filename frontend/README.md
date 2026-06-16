@@ -53,8 +53,9 @@ App runs at **http://localhost:5173**
 |-------|-----------|-------------|
 | `/` | `Home` | Landing page with Register / Sign In and Know More button |
 | `/about` | `About` | Information about Launchcorp |
-| `/dashboard` | `Dashboard` | Shown after sign in — contains the Click Me button |
-| `/castle` | `Castle` | Final destination — message controlled by LaunchDarkly flag |
+| `/dashboard` | `Dashboard` | Shown after sign in — contains the Enter The Airlock Room button |
+| `/airlock` | `Airlock` | Airlock room — gated by LaunchDarkly flag |
+| `/engine-room` | `EngineRoom` | Engine room — gated by LaunchDarkly flag |
 
 ## User Flow
 
@@ -62,8 +63,8 @@ App runs at **http://localhost:5173**
 /  (Home)
 ├── Register        → creates account, shows confirmation
 ├── Sign In         → on success → /dashboard
-│                         └── Click Me → /castle
-│                                   └── Go To Home → /
+│                         └── Enter The Airlock Room → /airlock
+│                                   └── Proceed to Engine Room → /engine-room
 └── Know more about Launchcorp → /about
 ```
 
@@ -84,14 +85,18 @@ The app is wrapped with `asyncWithLDProvider` in `main.jsx`, which initialises t
 
 ### Feature Flags
 
-| Flag Key | Type | Component | Behaviour |
-|----------|------|-----------|-----------|
-| `switch-castle-dungeon` | Boolean | `Castle` | `true` → "Enter The Castle" · `false` → "Enter The Dungeon" |
+The following flags must be created in your LaunchDarkly project for the app to work as intended. For each flag, ensure **Client-side SDK availability** (SDKs using Client-side ID) is enabled.
+
+| Flag Key | Type | Default (off) | Component | Behaviour |
+|----------|------|---------------|-----------|-----------|
+| `allow_airlock_room` | Boolean | `false` | `Dashboard`, `Airlock` | `true` → entry allowed to `/airlock` · `false` → "Entry Denied" |
+| `engine_room_access` | String | `""` | `Airlock` | Value `"You Are Ready"` → entry allowed to `/engine-room` · anything else → "Entry Denied" |
 
 ### Adding a New Flag
 
 1. Create the flag in your LaunchDarkly project (ensure **Client-side SDK availability** is enabled)
 2. Use `useLDClient` in the component and call `ldClient.variation('your-flag-key', defaultValue)`
+3. Add a row to the table above so other contributors know it must be created
 
 ---
 
@@ -108,13 +113,17 @@ frontend/
 │   │   ├── Auth.jsx          # Register / Sign In form
 │   │   ├── About.jsx         # About Launchcorp page
 │   │   ├── Dashboard.jsx     # Post-login page
-│   │   └── Castle.jsx        # LD flag-controlled page
+│   │   ├── Airlock.jsx       # LD flag-gated airlock room
+│   │   ├── EngineRoom.jsx    # LD flag-gated engine room
+│   │   └── BackButton.jsx    # Reusable top-left back button
 │   └── styles/
 │       ├── Home.css
 │       ├── Auth.css
 │       ├── About.css
 │       ├── Dashboard.css
-│       └── Castle.css
+│       ├── Airlock.css
+│       ├── EngineRoom.css
+│       └── BackButton.css
 ├── .env                      # Local env vars (gitignored)
 ├── .env.example              # Template for env vars
 ├── index.html

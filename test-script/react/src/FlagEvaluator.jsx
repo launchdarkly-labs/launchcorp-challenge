@@ -37,7 +37,7 @@ export default function FlagEvaluator() {
           <input
             style={styles.input}
             type="text"
-            placeholder="e.g. switch-castle-dungeon"
+            placeholder="e.g. feature-flag"
             value={flagKey}
             onChange={(e) => setFlagKey(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && evaluate()}

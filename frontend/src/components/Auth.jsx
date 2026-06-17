@@ -37,7 +37,7 @@ export default function Auth() {
           key: crypto.randomUUID(),
           name,
         })
-        navigate('/dashboard')
+        navigate('/airlock')
         return
       }
       setMessage({ text: data.detail, ok: false })

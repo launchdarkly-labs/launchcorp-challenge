@@ -11,8 +11,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-users = {"Ron", "Steve", "Linda", "Pete"}
-
 
 class AuthRequest(BaseModel):
     name: str
@@ -20,6 +18,6 @@ class AuthRequest(BaseModel):
 
 @app.post("/login")
 def login(payload: AuthRequest):
-    if payload.name not in users:
-        raise HTTPException(status_code=401, detail="Invalid name")
-    return {"message": f"Welcome back, {payload.name}!"}
+    if payload.name.strip().lower() != "guest":
+        raise HTTPException(status_code=401, detail="Only the 'guest' user can sign in.")
+    return {"message": "Welcome, guest!"}

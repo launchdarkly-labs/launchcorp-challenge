@@ -56,7 +56,7 @@ App runs at **http://localhost:5173**
 | `/` | `Home` | Landing page with Sign In and Know More button |
 | `/about` | `About` | Information about Launchcorp |
 | `/dashboard` | `Dashboard` | Orphaned route (kept for reference) — sign-in now goes straight to `/airlock` |
-| `/airlock` | `Airlock` | Airlock room — entry gated by `allow_airlock_room`; proceed gated by `feature-flag` |
+| `/airlock` | `Airlock` | Airlock room — free entry; proceed gated by `feature-flag` |
 | `/engine-room` | `EngineRoom` | Engine room — proceed gated by 7 system-readiness flags |
 | `/communication-array` | `CommunicationArray` | Communication Array — proceed gated by `wordle-variation` |
 | `/mission-control` | `MissionControl` | Final destination — celebration screen with spaceships |
@@ -96,15 +96,7 @@ All flags below **must** be created in the **Test** environment of your LaunchDa
 
 Flag keys, types, and value checks are case-sensitive and exact.
 
-#### 1. Enter the Airlock
-
-| Flag Key | Type | Code Default | Component | Required to Pass |
-|----------|------|--------------|-----------|------------------|
-| `allow_airlock_room` | Boolean | `false` | `Airlock` | Served value `true` |
-
-If `false`, the Airlock renders an "Entry Denied" view.
-
-#### 2. Airlock → Engine Room (decoded via Atbash transmission puzzle)
+#### 1. Airlock → Engine Room (decoded via Atbash transmission puzzle)
 
 | Flag Key | Type | Code Default | Component | Required to Pass |
 |----------|------|--------------|-----------|------------------|
@@ -112,7 +104,7 @@ If `false`, the Airlock renders an "Entry Denied" view.
 
 The puzzle decodes `21 22 26 7 6 9 22 / 21 15 26 20` (Atbash where `A=26 … Z=1`) to **FEATURE FLAG** → flag key `feature-flag`. Click "Proceed to Engine Room" fails with "Entry Denied" if this evaluates to anything other than boolean `true`.
 
-#### 3. Engine Room → Communication Array (crew-reports CSP puzzle)
+#### 2. Engine Room → Communication Array (crew-reports CSP puzzle)
 
 Each of the 7 systems is its own **Boolean** flag. The button "Proceed to Communication Array" requires the exact configuration below — every other combination yields a blaring red "Access Denied":
 
@@ -128,7 +120,7 @@ Each of the 7 systems is its own **Boolean** flag. The button "Proceed to Commun
 
 (Code default for each is `false`, so missing flags break the ON requirements but satisfy the OFF requirements.)
 
-#### 4. Communication Array → Mission Control (Wordle decryption puzzle)
+#### 3. Communication Array → Mission Control (Wordle decryption puzzle)
 
 | Flag Key | Type | Code Default | Component | Required to Pass |
 |----------|------|--------------|-----------|------------------|

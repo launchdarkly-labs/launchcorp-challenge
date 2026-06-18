@@ -25,7 +25,6 @@ const AirlockPuzzle = (
 export default function Airlock() {
   const navigate = useNavigate()
   const ldClient = useLDClient()
-  const allowed = ldClient.variation('allow_airlock_room', false)
   const [error, setError] = useState(null)
 
   const proceedToEngineRoom = () => {
@@ -35,21 +34,6 @@ export default function Airlock() {
     } else {
       setError('Entry Denied')
     }
-  }
-
-  if (!allowed) {
-    return (
-      <div className="airlock-page">
-        <BackButton />
-        <h1 className="airlock-title airlock-denied-title">Entry Denied</h1>
-        <div className="puzzle-actions">
-          <PuzzleButton>{AirlockPuzzle}</PuzzleButton>
-          <button className="airlock-proceed-btn" onClick={() => navigate('/dashboard')}>
-            Go To Home
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (

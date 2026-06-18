@@ -52,7 +52,7 @@ export default function Airlock() {
         </button>
       </div>
       {error && <p className="airlock-error">{error}</p>}
-      <button className="airlock-signout-btn" onClick={() => navigate('/')}>
+      <button className="airlock-signout-btn" onClick={() => window.location.reload()}>
         Sign Out
       </button>
     </div>

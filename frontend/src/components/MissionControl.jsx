@@ -53,7 +53,7 @@ export default function MissionControl() {
         alt="mission control"
         className="mission-control-illustration"
       />
-      <button className="mission-control-home-btn" onClick={() => navigate('/')}>
+      <button className="mission-control-home-btn" onClick={() => window.location.reload()}>
         Go Home
       </button>
     </div>
